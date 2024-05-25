@@ -117,19 +117,19 @@ if ! shopt -oq posix; then
 fi
 
 # PS1 setting
-# PS1="[\W][$(date +%H:%M)]$ "
+PS1="[\W][$(date +%H:%M)]$ "
 
-# PS1='\[\033[33m\]'              # change to brownish yellow
-# PS1="$PS1"'\W'                 # current working directory
-# PS1="$PS1"'\[\033[32m\]'        # change to green
-# PS1="$PS1"'[$(date +%H:%M)]'
-# PS1="$PS1"'\[\033[35m\]'       # change to purple
-# PS1="$PS1"'$(__git_ps1)'        # \[\e[m\]\$ '
-# PS1="$PS1"'\[\033[0m\]'        # change color
-# PS1="$PS1"'$ '                 # prompt: always $
+PS1='\[\033[33m\]'              # change to brownish yellow
+PS1="$PS1"'\W'                 # current working directory
+PS1="$PS1"'\[\033[32m\]'        # change to green
+PS1="$PS1"'[$(date +%H:%M)]'
+PS1="$PS1"'\[\033[35m\]'       # change to purple
+PS1="$PS1"'$(__git_ps1)'        # \[\e[m\]\$ '
+PS1="$PS1"'\[\033[0m\]'        # change color
+PS1="$PS1"'$ '                 # prompt: always $
 
 # setting for oh my posh 
-eval "$(oh-my-posh init bash)"
+# eval "$(oh-my-posh init bash)"
 
 # cd to windows home dir(I'm gonna change home dir itself someday)
-cd /mnt/c/Users/Ito
+# cd /mnt/c/Users/Ito
