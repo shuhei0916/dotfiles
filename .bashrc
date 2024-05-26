@@ -116,9 +116,24 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# PS1 setting
-PS1="[\W][$(date +%H:%M)]$ "
+# git setting for prompt
+# https://qiita.com/ryoichiro009/items/7957df2b48a9ea6803e0
+source ~/.git-completion.bash
+source ~/.git-prompt.sh
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWUNTRACKEDFILES=true
+GIT_PS1_SHOWSTASHSTATE=true
+GIT_PS1_SHOWUPSTREAM=auto
 
+rightprompt()
+{
+    # local prompt_text=$1
+    printf "%*s" $COLUMNS "$(date +%H:%M)"
+}
+
+# # PS1 setting
+# PS1="\[\e[1;32m\]\u@\h\[\e[m\]:\[\e[1;34m\]\W\[\e[m\]\[\e[33m\]\$(__git_ps1)\[\e[m\]\$ "
+# PS1="[\W][$(date +%H:%M)]$ "
 PS1='\[\033[33m\]'              # change to brownish yellow
 PS1="$PS1"'\W'                 # current working directory
 PS1="$PS1"'\[\033[35m\]'       # change to purple
@@ -127,9 +142,11 @@ PS1="$PS1"'\[\033[32m\]'        # change to green
 PS1="$PS1"'[$(date +%H:%M)]'
 PS1="$PS1"'\[\033[0m\]'        # change color
 PS1="$PS1"' > '                 # prompt: always >
+PS1='\[$(tput sc; rightprompt; tput rc)\]left prompt > '
 
-# setting for oh my posh 
-# eval "$(oh-my-posh init bash)"
 
-# cd to windows home dir(I'm gonna change home dir itself someday)
-# cd /mnt/c/Users/Ito
+# if there is oh-my-posh, read it
+if [ -f "/usr/local/bin/oh-my-posh" ]; then
+    eval "$(oh-my-posh init bash)"
+    # echo "hehe"
+fi
