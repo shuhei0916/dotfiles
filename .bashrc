@@ -135,6 +135,14 @@ rightprompt()
 leftprompt="\W\$(__git_ps1)"
 PS1='\[$(tput sc; rightprompt; tput rc)\]'"$leftprompt > "
 
+# PS1='\[\033[33m\]'              # change to brownish yellow
+# PS1="$PS1"'\W'                 # current working directory
+# PS1="$PS1"'\[\033[35m\]'       # change to purple
+# PS1="$PS1"'$(__git_ps1) '        # \[\e[m\]\$ '
+# PS1="$PS1"'\[\033[32m\]'        # change to green
+# PS1="$PS1"'[$(date +%H:%M)]'
+# PS1="$PS1"'\[\033[0m\]'        # change color
+# PS1="$PS1"' > '                 # prompt: always >
 
 # if there is oh-my-posh, read it
 if [ -f "/usr/local/bin/oh-my-posh" ]; then
