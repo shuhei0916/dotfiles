@@ -128,25 +128,22 @@ GIT_PS1_SHOWUPSTREAM=auto
 # # PS1 setting
 rightprompt()
 {
-    # local prompt_text=$1
     printf "%*s" $COLUMNS "$(date +%H:%M)"
 }
 
-leftprompt="\W\$(__git_ps1)"
-PS1='\[$(tput sc; rightprompt; tput rc)\]'"$leftprompt > "
+# TODO: oh-my-poshがない時のプロンプトを、oh-my-poshのデザインに近づける（沼）
+    # TODO: 色見本を参考に、いろいろ試してみる。
+    # TODO: 時刻を青色で表示する
+leftprompt="\[\033[33m\]\u\[\033[0m\] " 
+leftprompt="$leftprompt"'\[\033[32m\]\W\[\033[0m\]'
+leftprompt="$leftprompt"'\[\033[33m\]$(__git_ps1 " (%s)")\[\033[0m\]'
 
-# PS1='\[\033[33m\]'              # change to brownish yellow
-# PS1="$PS1"'\W'                 # current working directory
-# PS1="$PS1"'\[\033[35m\]'       # change to purple
-# PS1="$PS1"'$(__git_ps1) '        # \[\e[m\]\$ '
-# PS1="$PS1"'\[\033[32m\]'        # change to green
-# PS1="$PS1"'[$(date +%H:%M)]'
-# PS1="$PS1"'\[\033[0m\]'        # change color
-# PS1="$PS1"' > '                 # prompt: always >
+
+PS1='\[$(tput sc; rightprompt; tput rc)\]'"$leftprompt> "
 
 # if there is oh-my-posh, read it
 if [ -f "/usr/local/bin/oh-my-posh" ]; then
-    # eval "$(oh-my-posh init bash)"
-    # echo "hehe"
+    eval "$(oh-my-posh init bash)"
+    echo "oh-my-posh instlled!"
     : # do nothing
 fi
